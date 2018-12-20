@@ -1,0 +1,219 @@
+ /* 以下部分为固定样式，提前都得先写好 css初始化*/
+    /* 清除内外边距 */
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    /* 去掉列表样式小点 */
+    ul {
+        list-style: none;
+    }
+    a {
+        text-decoration: none;  
+    }
+    /* 清除浮动样式 */
+    .clearfix:before, .clearfix:after {
+        content: "";
+        display: table;
+    }
+    .clearfix:after {
+        clear: both;
+    }
+    .clearfix {
+        *zoom: 1;
+    }
+    /* 公共样式结束 */
+    /* 设置大背景颜色 */
+    body {
+        background-color:#cccccc;
+    }
+    /* 版心大盒子的设置 */
+    .container {
+        background-color: #fff;
+        width: 980px;
+        height: 1600px;
+        margin: 30px auto 0px;
+    }
+    /* header部分样式设置 */
+    header {
+        height: 65px;
+    }
+    header li {
+        float: right;
+        height: 45px;
+        display: block;
+        margin: 15px 15px 3px;
+        text-align: center;
+    }
+    /* 设置头部导航文字的初始样式 */
+    header li a {
+        color: #2f4f4f;
+        display: block;
+        font-size: 14px;
+    }
+    /* 以下用到了字体图标，字体图标如字体一样可以自由设置大小、颜色，非常方便 */
+    @font-face{                          /*这一段代码是固定的直接引用就行*/
+        font-family: "icomoon";          /*这里的名字一定与下面的名字一样*/
+        src: url("fonts/icomoon.eot");   /*这里的路径也一定要写正确，要不然找不到fonts文件夹 */
+        src: url("fonts/icomoon.eot?#iefix") format("embedded-opentype")
+             ,url("fonts/icomoon.woff") format("woff")
+             ,url("fonts/icomoon.ttf") format("truetype")
+             ,url("fonts/icomoon.svg") format("svg");
+        font-weight: normal;
+        font-style: normal;
+    }
+    header li span {
+        font-family: "icomoon";    /*这里的名字一定与上面的名字一样*/
+        font-size: 18px;             /*设置图标的大小  */
+        color: #2f4f4f;            /*设置图标的颜色 */
+    }
+    /* 以上是字体图标的完整使用样式 */
+
+    /* 鼠标经过头部导航文字时，让文字和对应图标都变成红色 */
+    header li:hover a {
+        color:red;
+    }
+    header li:hover span {
+        color: red;
+    }
+    /* 网页logo */
+    .logo { 
+        height: 97px; 
+        background-image: url(images/logo-wka.png);
+    } 
+    /* 大图展示模块 */
+    /* 整个大图的大盒子样式设置 */
+    .bigshow {
+        width: 980px;
+        height: 432px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    /* 大盒子里每一张照片盒子的样式设置 */
+    .bigshow li {
+        width: 191px;
+        height: 412px;
+        display: block;
+        float: left;
+        position: relative;
+    }
+     /*鼠标经过图片给图片显示边框*/
+    .bigshow li a:hover::before {                                  
+        content: " ";
+        width: 191px;
+        height: 412px;
+        border: 8px solid rgba(0, 0 , 0, .3);
+        display: block;                                            /*伪元素是行内元素，本没有宽高，所以要转换*/
+        position: absolute;                                        /*子绝父相*/
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+    }
+    /* banner条设置 */
+    /* 整个banner大盒子样式设置 */
+    .banner {
+        width: 980px;
+        height: 83px;
+        padding: opx 10px;
+    }
+    .banner ul {
+        display: block;
+        margin: 0px 10px;
+    }
+    /* banner里面每个小块盒子样式设置 */
+    .banner li {
+        width: 186px;
+        height: 63px;
+        background-color: #ececec;
+        display: block;
+        float: left;
+        margin: 3px;
+    }
+    /* 每个小盒子里a链接的样式设置 */
+    .banner li a {
+        display: block;
+        line-height: 63px;
+        color: #2f4f4f;
+        font-weight: bold;
+        text-align: center;
+        font-size: 17px;
+        /* transition: background-color 1s, color 1s;      设置鼠标经过时的过渡效果 */
+        transition: all 1s;      /*全部都变化时可以用all直接代替，也能实现上面的过渡效果*/
+    }
+    /* 鼠标经过banner中每个小盒子里的a链接时的样式变化 */
+    .banner li a:hover {
+        background-color: #2f4f4f;
+        color: #fff;
+    }
+    /* 品类详情 */
+    .category {
+        width: 980px;
+        height: 200px;
+        font-size: 70px;
+        /* color: #880000; */
+        color: #6c300b;
+        padding: 30px 0px 0px 60px;
+        font-family: 微软雅黑;
+        font-weight: bold;
+        box-sizing:  border-box;
+        text-shadow: 3px 8px 3px rgba(0, 0, 0, 0.5); 
+    }
+    /* 品类详情中的图片区大盒子样式设置 */
+    .catey-picture {
+        width: 980px;
+        height: 692px;
+        padding: 0px 10px 0px 10px;
+        box-sizing: border-box;     /*让padding不额外占地方*/
+    }
+    /* 让所有的照片块都浮动起来 */
+    .catey-picture li {
+        float: left;
+        transition: all 1s;    /*过渡效果    鼠标经过图片时的一个慢慢的过渡效果*/
+    }
+    /* 品类详情中的图片区大盒子中四个小盒子的样式设置 */
+    .catey-picture li:first-child {
+        width: 320px;
+        height: 642px;
+    }
+    .catey-picture li:nth-child(2) {
+        width: 305px;
+        height: 355px;
+        margin-left: 15px;
+    }
+    .catey-picture li:nth-child(3) {
+        width: 305px;
+        height: 355px;
+        margin-left: 15px;
+    }
+    .catey-picture li:last-child {
+        width: 625px;
+        height: 272px;
+        margin-left: 15px;
+        margin-top: 15px;
+    }
+    /* 鼠标经过每张图片时出现一个过渡效果      过渡效果的使用 */
+    .catey-picture li:hover {
+        margin-top:-10px;
+        box-shadow: 0 8px 9px rgba(0, 0, 0, .5)     /*给盒子做一个阴影效果*/
+    }
+    /* 以上品类详情设置完成 */
+    /* 网页footer样式设置 */
+    .footer {
+        width: 980px;
+        height: 110px;
+        margin-top: 30px; 
+    }
+    /* 页尾logo样式设置 */
+    .foot-logo {
+        width: 980px;
+        height: 44px;
+        padding-top: 10px ;
+        box-sizing: border-box;
+    }
+    /* 页尾文字样式设置 */
+    .footer p {
+        width: 980px;
+        height: 56px;
+        line-height: 56px;     /*行高等于高时文字上下居中*/
+        font-size: 14px;
+    }
