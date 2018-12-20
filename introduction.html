@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>公司介绍</title>
+    <style>
+    /* 以下部分为固定样式，提前都得先写好 css初始化*/
+    /* 清除内外边距 */
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    /* 去掉列表样式小点 */
+    ul {
+        list-style: none;
+    }
+    a {
+        text-decoration: none;  
+    }
+    /* 清除浮动样式 */
+    .clearfix:before, .clearfix:after {
+        content: "";
+        display: table;
+    }
+    .clearfix:after {
+        clear: both;
+    }
+    .clearfix {
+        *zoom: 1;
+    }
+    /* 公共样式结束 */
+    /* 设置大背景颜色 */
+    body {
+        background-color:#cccccc;
+    }
+    /* 版心大盒子的设置 */
+    .container {
+        background-color: #fff;
+        width: 980px;
+        height: 970px;
+        margin: 30px auto 0px;
+    }
+    /* header部分样式设置 */
+    header {
+        height: 35px;
+        line-height: 35px;
+        padding-right: 36px; 
+        color: #696969; 
+        text-align: right;
+    }
+    /* 网页logo */
+    .logo { 
+        height: 97px; 
+        background-image: url(images/logo-wka.png);
+    } 
+    /* banner条设置 */
+    /* 整个banner大盒子样式设置 */
+    .banner {
+        width: 980px;
+        height: 73px;
+        margin-top: 10px;
+    }
+    .banner ul {
+        display: block;
+    }
+    /* banner里面每个小块盒子样式设置 */
+    .banner li {
+        width: 196px;
+        height: 40px;
+        background-color: #ececec;
+        display: block;
+        float: left;
+    }
+    /* 每个小盒子里a链接的样式设置 */
+    .banner li a {
+        display: block;
+        line-height: 40px;
+        color: #2f4f4f;
+        font-weight: bold;
+        text-align: center;
+        font-size: 17px;
+        /* transition: background-color 1s, color 1s;      设置鼠标经过时的过渡效果 */
+        transition: all 1s;      /*全部都变化时可以用all直接代替，也能实现上面的过渡效果*/
+    }
+    /* 鼠标经过banner中每个小盒子里的a链接时的样式变化 */
+    .banner li a:hover {
+        background-color: #2f4f4f;
+        color: #fff;
+    }
+    /* banner设置结束 */
+    /* landmark地标导航设置开始 */
+    .landmark {
+        width: 980px;
+        height: 25px;
+        padding-left: 30px;
+    }
+    .landmark li {
+        float: left;
+        display: block;
+        line-height: 25px;
+        font-size: 14px;
+        margin: 0 5px;
+        color: #333;
+    }
+    .landmark li a:hover {
+        color:brown;
+    }
+    .landmark .now {
+        font-weight: 700px;
+        color: black;
+    }
+    /* 地标导航设置结束 */
+    /* 公司概述summary信息模块样式设置 */
+    .summary {
+        width: 980px;
+        height: 241px;
+        margin-top: 30px;
+        border-top: 1px solid black;
+        box-sizing: border-box;
+    }
+    /* 设置格式让summary中的两个盒子浮动起来 */
+    .summary li {
+        float: left;
+        display: block;
+    }
+    /* 公司概述大盒子中左边盒子的样式设置 */
+    .summary-l {
+        width: 600px;
+        height: 241px;
+        padding: 30px 90px;
+        box-sizing: border-box;
+        font-family: Microsoft YaHei;
+    }
+    .summary-l .name {
+        font-size: 18px;
+        font-family: Microsoft YaHei;
+        color:#333;
+        line-height: 50px;
+    }
+    /* 以下用到了字体图标，字体图标如字体一样可以自由设置大小、颜色，非常方便 */
+    @font-face{                          /*这一段代码是固定的直接引用就行*/
+        font-family: "icomoon";          /*这里的名字一定与下面的名字一样*/
+        src: url("fonts/icomoon.eot");   /*这里的路径也一定要写正确，要不然找不到fonts文件夹 */
+        src: url("fonts/icomoon.eot?#iefix") format("embedded-opentype")
+             ,url("fonts/icomoon.woff") format("woff")
+             ,url("fonts/icomoon.ttf") format("truetype")
+             ,url("fonts/icomoon.svg") format("svg");
+        font-weight: normal;
+        font-style: normal;
+    }
+    .icon {
+        font-family: "icomoon";    /*这里的名字一定与上面的名字一样*/
+        font-size: 30px;             /*设置图标的大小  */
+        color: #2f4f4f;            /*设置图标的颜色 */
+        width: 45px;
+        height: 52px;  
+    }
+    /* 以上是字体图标的完整使用样式 */
+    /* tel联系人联系电话样式设置 */
+    .tel {
+        font-size: 14px;
+        font-family: Microsoft YaHei;
+        line-height: 30px;
+    }
+    /* 公司概述大盒子中右边盒子的样式设置 */
+    .summary-r {
+        width: 380px;
+        height: 241px;
+    }
+    /* 公司概述盒子设置结束 */
+    /* 公司详情盒子格式设置开始 */
+    .details {
+        width: 980px;
+        height: 146px;
+        padding: 30px 60px;
+        border: 1px #e6e6e6 solid;
+        box-sizing: border-box;
+        color: #333;
+        font-family: Microsoft YaHei;
+        line-height: 30px;
+        font-size: 14px;
+    }
+    /* 公司详情盒子格式设置结束 */
+    /* 工商信息business模块格式设置  开始*/
+    .business {
+        width: 980px;
+        height: 182px;
+        padding: 40px 55px 20px;
+        box-sizing: border-box;
+    }
+    .business span {
+        font-size: 16px;
+        font-family: Microsoft YaHei;
+        color: #333;
+    }
+    .business .tab-item {
+        height: 47px;
+        margin-top: 20px; 
+        width: 100%;
+        border-color: #e6e6e6;
+        font-family: Microsoft YaHei;
+        color: #333;
+        font-size: 13px;
+    }
+    .tab-item th {
+        font-weight: bold;
+        text-align: -internal-center;
+        background-color: #ececec;
+    }
+    /* 工商信息business模块格式设置  结束*/
+    /* 页底footer格式设置 */
+    footer {
+        width: 980px;
+        height: 129px;
+        border: 1px #e6e6e6 solid;
+        box-sizing:border-box;
+    }
+    footer li {
+        float: left;
+        display: block;
+        box-sizing: border-box;
+    }
+    .footer-icon {
+        font-family: "icomoon";
+        font-size: 60px;
+        width: 100px;
+        height: 129px;
+        text-align: right;
+        padding: 30px 0 50px;
+        box-sizing: border-box;
+        color: red;
+
+    }
+    .footer-text {
+        width: 878px;
+        height: 129px;
+        padding: 30px 10px ;
+        box-sizing: border-box;
+        color: #333;
+        font-size: 14px;
+        font-family: Microsoft YaHei;
+    }
+    .footer-text span {
+        color: red;
+
+    }
+    </style>
+</head>
+<body>
+     <!-- 结构 -->
+    <!-- 整个版心大盒子部分 -->
+    <div class="container">
+        <!-- 网页头部 -->
+        <header>
+            您好，欢迎来到河南宏飞
+        </header>
+        <!-- 网页logo -->
+        <div class="logo">
+        </div>
+<!-- banner条设置 -->
+<div class="banner">
+    <ul>
+        <li><a href="#">网站首页</a></li>
+        <li><a href="#">成功案例</a></li>
+        <li><a href="#">业务承接</a></li>
+        <li><a href="#">公司介绍</a></li>
+        <li><a href="#">联系我们</a></li>
+    </ul>
+</div>
+<!-- 地标landmark设置 -->
+<div class="landmark">
+    <ul>
+        <li>当前位置 ></li>
+        <li><a>公司首页 ></a></li>
+        <li class="now">公司介绍</li>
+    </ul>
+</div>
+<div class=""></div>
+<!-- 公司概述summary信息模块 -->
+<div class="summary">
+    <ul>
+        <li class="summary-l">
+            <span class="name">河南宏飞服装有限公司</span> <br />
+            <span class="icon"></span>
+            <span class="tel">靖先生 &nbsp;&nbsp;18739713199 <br /> 主营产品：服装 背包 <br />地址：河南&nbsp;&nbsp;&nbsp;安阳</span>
+        </li>
+        <li class="summary-r"><img src="images/introduction.png"></li>
+    </ul>
+</div>
+<div class="details">
+        北京昊康宏盛商贸有限公司，是集开发、找活、销售、物流配送和专柜品牌折扣公司批发为一体的综合性民营服装批发企业。目前，公司拥有数百个常年经营批发的品牌折扣公司女装批发，为全国各地批发商带来几百万件的货源。几千平米的仓库备足了每个季节***新的货品，都是专柜正品货，货源稳定，出货价便宜，保证质量的同时基本以吊牌价一折左右出货，
+</div>
+<!-- 工商信息模块 -->
+<div class="business">
+    <span>|  &nbsp;工商信息</span>
+    <table class="tab-item" align="center" cellpadding="0" cellspacing="0" border="1">
+        <tr>
+            <th width="14%">主营产品或服务</th>
+            <td colspan="2">&nbsp;&nbsp;&nbsp;日用品、服装、鞋帽</td>
+        </tr>
+    </table>
+</div>
+<!-- 页底盒子 -->
+<footer>
+    <ul>
+        <li class="footer-icon"></li>
+        <li class="footer-text"><span>免责声明:</span>&nbsp;&nbsp;&nbsp;本页面所展现的公司信息、产品信息及其他相关信息，均来源于其对应的商铺，信息的真实性、准确性和合法性由该信息的来源<br />商铺所属企业完全负责。中国供应商对此不承担任何保证责任。<br /><span>友情提示:</span>&nbsp;&nbsp;&nbsp;建议您在购买相关产品前务必确认供应商资质及产品质量，过低的价格有可能是虚假信息，请谨慎对待，谨防欺诈行为。</li>
+    </ul>
+</footer>
+</body>
+</html>
